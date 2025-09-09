@@ -7,12 +7,13 @@ import DefaultLayout from './layouts/DefaultLayout';
 import LandingPage from './pages/LandingPage';
 import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
+import { BugetProvider } from './contexts/BugetContext';
 
 function App() {
   
  
  return (
-  
+  <BugetProvider>
     <BrowserRouter>
       <Routes>
         <Route   element={<DefaultLayout/>}>
@@ -22,14 +23,15 @@ function App() {
             <Route index element={<Products/>}/>
             <Route path=":id" element={<ProductDetail/>}/>
           </Route>
-            
-          
          
         </Route>  
-    </Routes>
-
-//  </BrowserRouter>
+      </Routes>
+    </BrowserRouter>
+  </BugetProvider>
   )
 }
 
 export default App
+            
+          
+

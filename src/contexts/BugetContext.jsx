@@ -1,9 +1,18 @@
-import React from 'react'
+import {createContext, useContext} from 'react'
 
-const BugetContext = () => {
-  return (
-    <div>BugetContext</div>
-  )
+const BudgetContext=createContext();
+const BugetProvider = ({children}) => {
+
+    const value= true;
+    return(
+      <BudgetContext.Provider value={value}>
+        {children}
+      </BudgetContext.Provider>
+    )
+}
+const useBudgetContext = ()=>{
+  const context = useContext(BudgetContext)
+  return context
 }
 
-export default BugetContext
+export {BugetProvider,useBudgetContext}
