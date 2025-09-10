@@ -9,7 +9,7 @@ const endpoint="https://fakestoreapi.com/products";
 const Products = () => {
    const [items,setItems]=useState([]);
    const [filteredItems,setFilteredItems]=useState([]);
-   const {budgetMode}= useBudgetContext();
+   const {maxPrice,setMaxPrice}= useBudgetContext();
 
      useEffect(()=>{
     
@@ -21,15 +21,15 @@ const Products = () => {
   },[])
   useEffect(()=>{
     let selectedData;
-        if (budgetMode){
+        if (maxPrice!=""){
           selectedData= items.filter((item)=>{
-            return item.price<30;
+            return item.price<maxPrice;
           })
           setFilteredItems(selectedData)
         }
         else{setFilteredItems(items)}
         
-  },[budgetMode]) 
+  },[maxPrice]) 
   return (
     <main>
       <div className="container">

@@ -1,4 +1,4 @@
-import React, { use } from 'react'
+
 import { useState,useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { useBudgetContext, BudgetProvider } from '../contexts/BudgetContext'
@@ -24,25 +24,27 @@ const linkTree= [
 
 const Header = () => {
   
-const {budgetMode,toggleBudgetMode} = useBudgetContext();
-const [maxPrice,setMaxPrice]=useState();
+const {maxPrice,setMaxPrice} = useBudgetContext();
   return (
     <header>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <NavLink to="/" className="logo">logo </NavLink>
           <div className="budget d-flex">
-            <div>
-              <label className='d-block'>INSERISCI PREZZO MASSIMO</label>
-              <input type="number" />
+            <div className='me-2'>
+              <label className='d-block'>set budget</label>
+              <input 
+              type="number" 
+              placeholder="inserisci budget"
+              onChange={(e)=>{setMaxPrice(e.target.value)}} />
 
             </div>
-            <button 
+            {/* <button 
               className={budgetMode ? "btn btn-success":"btn btn-danger"}
               onClick={toggleBudgetMode}
               >Budget Mode {budgetMode ? " on":" off"}
             </button> 
-       
+        */}
           
           </div>   
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
