@@ -7,13 +7,13 @@ import DefaultLayout from './layouts/DefaultLayout';
 import LandingPage from './pages/LandingPage';
 import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
-import { BugetProvider } from './contexts/BugetContext';
+import { BudgetProvider } from './contexts/BudgetContext';
 
 function App() {
   
  
  return (
-  <BugetProvider>
+  <BudgetProvider>
     <BrowserRouter>
       <Routes>
         <Route   element={<DefaultLayout/>}>
@@ -27,7 +27,7 @@ function App() {
         </Route>  
       </Routes>
     </BrowserRouter>
-  </BugetProvider>
+  </BudgetProvider>
   )
 }
 

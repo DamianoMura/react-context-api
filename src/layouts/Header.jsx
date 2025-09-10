@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { use } from 'react'
 import { useState,useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { useBudgetContext, BudgetProvider } from '../contexts/BudgetContext'
 
 
 const linkTree= [
@@ -22,17 +23,26 @@ const linkTree= [
 ]
 
 const Header = () => {
-
   
+const {budgetMode,toggleBudgetMode} = useBudgetContext();
+
   return (
     <header>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <NavLink to="/" className="logo">logo </NavLink>
-             
+          <div className="budget">
+            <button 
+              className={budgetMode ? "btn btn-success":"btn btn-danger"}
+              onClick={toggleBudgetMode}
+              >Budget Mode {budgetMode ? " on":" off"}</button> 
+       
+          
+          </div>   
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
+          
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               {linkTree.map((link)=>{
