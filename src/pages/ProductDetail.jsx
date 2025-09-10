@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState,useEffect } from 'react';
 import { useNavigate,useParams } from 'react-router-dom';
 import ProductFrame from '../../components/ProductFrame'
+import { useBudgetContext, BudgetProvider } from '../contexts/BudgetContext'
 const endpoint="https://fakestoreapi.com/products";
 const ProductDetail = () => {
   const {id}=useParams();
@@ -9,6 +10,8 @@ const ProductDetail = () => {
   const navigate=useNavigate();
   useEffect(()=>{
     axios.get(endpoint+`/${id}`).then((resp)=>{
+      
+      
       setProduct(resp.data)})
   },[id])
   return (
