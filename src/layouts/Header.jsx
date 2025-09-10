@@ -25,17 +25,23 @@ const linkTree= [
 const Header = () => {
   
 const {budgetMode,toggleBudgetMode} = useBudgetContext();
-
+const [maxPrice,setMaxPrice]=useState();
   return (
     <header>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <NavLink to="/" className="logo">logo </NavLink>
-          <div className="budget">
+          <div className="budget d-flex">
+            <div>
+              <label className='d-block'>INSERISCI PREZZO MASSIMO</label>
+              <input type="number" />
+
+            </div>
             <button 
               className={budgetMode ? "btn btn-success":"btn btn-danger"}
               onClick={toggleBudgetMode}
-              >Budget Mode {budgetMode ? " on":" off"}</button> 
+              >Budget Mode {budgetMode ? " on":" off"}
+            </button> 
        
           
           </div>   

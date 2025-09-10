@@ -8,25 +8,28 @@ import ProductFrame from '../../components/ProductFrame';
 const endpoint="https://fakestoreapi.com/products";
 const Products = () => {
    const [items,setItems]=useState([]);
+   const [filteredItems,setFilteredItems]=useState([]);
    const {budgetMode}= useBudgetContext();
 
      useEffect(()=>{
     
       axios.get(endpoint).then((resp)=>{
-        //  setItems(structuredClone(resp.data))
-        let selectedData;
+         setItems(structuredClone(resp.data))
+         setFilteredItems(resp.data)
+        
+      })
+  },[])
+  useEffect(()=>{
+    let selectedData;
         if (budgetMode){
-          selectedData= resp.data.filter((item)=>{
+          selectedData= items.filter((item)=>{
             return item.price<30;
           })
-          setItems(selectedData)
+          setFilteredItems(selectedData)
         }
-        else{
-          setItems(resp.data)
-        }
-      })
-  },[budgetMode])
-   
+        else{setFilteredItems(items)}
+        
+  },[budgetMode]) 
   return (
     <main>
       <div className="container">
@@ -36,7 +39,7 @@ const Products = () => {
             <h3>All Items</h3>
           </div>
           {
-            items.map((item)=>{
+            filteredItems.map((item)=>{
               return(
                 <Link to={`/products/${item.id}`} key={item.id} >
                 <ProductFrame data={item} />
