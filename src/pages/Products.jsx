@@ -17,7 +17,7 @@ const Products = () => {
         let selectedData;
         if (budgetMode){
           selectedData= resp.data.filter((item)=>{
-            return item.price>30;
+            return item.price<30;
           })
           setItems(selectedData)
         }
